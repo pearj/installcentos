@@ -4,12 +4,12 @@
 
 ## Default variables to use
 export INTERACTIVE=${INTERACTIVE:="true"}
-export PVS=${INTERACTIVE:="true"}
+export PVS=${PVS:="true"}
 export DOMAIN=${DOMAIN:="$(curl -s ipinfo.io/ip).nip.io"}
 export USERNAME=${USERNAME:="$(whoami)"}
 export PASSWORD=${PASSWORD:=password}
 export VERSION=${VERSION:="3.11"}
-export SCRIPT_REPO=${SCRIPT_REPO:="https://raw.githubusercontent.com/gshipley/installcentos/master"}
+export SCRIPT_REPO=${SCRIPT_REPO:="https://raw.githubusercontent.com/pearj/installcentos/master"}
 export IP=${IP:="$(ip route get 8.8.8.8 | awk '{print $NF; exit}')"}
 export API_PORT=${API_PORT:="8443"}
 
@@ -93,7 +93,7 @@ cd openshift-ansible && git fetch && git checkout release-${VERSION} && cd ..
 cat <<EOD > /etc/hosts
 127.0.0.1   localhost localhost.localdomain localhost4 localhost4.localdomain4 
 ::1         localhost localhost.localdomain localhost6 localhost6.localdomain6
-${IP}		$(hostname) console console.${DOMAIN}  
+${IP} $(hostname) console console.${DOMAIN}  
 EOD
 
 if [ -z $DISK ]; then 
